@@ -24,6 +24,8 @@ We have a model describing Publishers. Each Publisher can have a number of Books
       |
       |-Book
 
+See these in [`models.py`][models].
+
 Using an inline formset we could display a single form that would let the user edit all of the Books belonging to a single Publisher.
 
 Using another inline formset we could display another form that would let the user edit all of the BookImages belonging to a single Book.
@@ -40,6 +42,7 @@ Finally we create our `PublisherBooksWithImagesFormset` which is for editing all
 
 See [`views.py`][views] for how we use this in a class-based view to create the page. This expects the `id` of a `Publisher`. And see the [`books/publisher_update.html`][template] template for how the outer form, and its `Book` formsets, and their nested `BookImage` formsets, are rendered.
 
+[models]: publishing/books/models.py
 [forms]: publishing/books/forms.py
 [views]: publishing/books/views.py
 [template]: publishing/books/templates/books/publisher_update.html
