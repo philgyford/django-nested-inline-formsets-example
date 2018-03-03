@@ -1,0 +1,12 @@
+{% extends 'books/base.html' %}
+
+{% block page_title %}Home{% endblock %}
+
+{% block body_title %}Home{% endblock %}
+
+
+{% block content %}
+
+  <p><a href="{% url 'books:publisher_list' %}">All publishers</a></p>
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'books/base.html' %}
+
+{% block page_title %}{{ publisher.name }}{% endblock %}
+
+{% block body_title %}{{ publisher.name }}{% endblock %}
+
+
+{% block content %}
+
+
+  {% if publisher.books.all %}
+
+    <ul>
+      {% for book in publisher.books.all %}
+        <li>{{ book.title }}</li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+
+    <p>This publisher has no books.</p>
+
+  {% endif %}
+
+  <p><a href="{% url 'books:publisher_list' %}">All publishers</a></p>
+
+{% endblock content %}
