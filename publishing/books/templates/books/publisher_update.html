@@ -2,7 +2,7 @@
 
 {% block page_title %}Editing {{ publisher.name }}{% endblock %}
 
-{% block body_title %}Editing {{ publisher.name }}{% endblock %}
+{% block body_title %}Editing <a href="{{ publisher.get_absolute_url }}">{{ publisher.name }}</a>{% endblock %}
 
 
 {% block content %}
@@ -18,53 +18,70 @@
     {{ form.management_form }}
     {{ form.non_form_errors }}
 
-    <table>
-      <thead>
-        <tr>
-          <th>Object</th>
-          <th>Images</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for child_form in form.forms %}
-          <tr>
-            <td>
-              {% for hidden_field in child_form.hidden_fields %}
-                {{ hidden_field.errors }}
-              {% endfor %}
+    {% for book_form in form.forms %}
 
-              {{ child_form.as_p }}
-            </td>
-            <td>
-              {% if child_form.nested %}
-                  {{ child_form.nested.management_form }}
-                  {{ child_form.nested.non_form_errors }}
+      <hr>
+
+      <h2>
+        {% if book_form.instance.id %}
+          Book #{{ book_form.instance.id }}</h2>
+        {% else %}
+          Add another book
+        {% endif %}
+      </h2>
+
+      {% for hidden_field in book_form.hidden_fields %}
+        {{ hidden_field.errors }}
+      {% endfor %}
+
+      <table>
+        {{ book_form.as_table }}
+      </table>
+
+      {% if book_form.nested %}
+        <div style="margin-left: 40px;">
+
+          <h3>Images</h3>
+
+          {{ book_form.nested.management_form }}
+          {{ book_form.nested.non_form_errors }}
+
+          <table>
+            {% for bookimage_form in book_form.nested.forms %}
+
+              <tr>
+                <td style="vertical-align:top">
+                  <em>
+                    {% if bookimage_form.instance.id %}
+                      BookImage #{{ bookimage_form.instance.id }}
+                    {% else %}
+                      Add an image
+                    {% endif %}
+                  </em>
+                </td>
+                <td style="vertical-align:top; padding-bottom: 2em;">
+                  {% for hidden_field in bookimage_form.hidden_fields %}
+                    {{ hidden_field.errors }}
+                  {% endfor %}
 
                   <table>
-                    {% for nested_form in child_form.nested.forms %}
-
-                      <tr>
-                        <td>
-                          {% if nested_form.instance.image %}
-                            <img src="{{ nested_form.instance.image.url }}" alt="{{ nested.form.instance.alt_text }}">
-                          {% endif %}
-                        </td>
-                        <td>
-                          {% for hidden_field in nested_form.hidden_fields %}
-                            {{ hidden_field.errors }}
-                          {% endfor %}
-
-                          {{ nested_form.as_p }}
-                        </td>
-                      </tr>
-                    {% endfor %}
+                    {{ bookimage_form.as_table }}
                   </table>
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+                </td>
+                <td style="vertical-align:top">
+                  {% if bookimage_form.instance.image %}
+                    <img src="{{ bookimage_form.instance.image.url }}" height="100" style="width:auto; max-width:150px;" alt="{{ nested.form.instance.alt_text }}">
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      {% endif %}
+
+    {% endfor %}
+
+    <hr>
 
     <p>
       <input type="submit" value="Update books">

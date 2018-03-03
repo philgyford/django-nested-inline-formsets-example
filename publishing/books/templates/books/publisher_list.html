@@ -13,6 +13,7 @@
       {% for publisher in publisher_list %}
         <li>
           <a href="{{ publisher.get_absolute_url }}">{{ publisher.name }}</a>
+          ({{ publisher.books.count }} book{{ publisher.books.count|pluralize }})
         </li>
       {% endfor %}
     </ul>

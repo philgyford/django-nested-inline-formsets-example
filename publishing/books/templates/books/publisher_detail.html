@@ -7,15 +7,37 @@
 
 {% block content %}
 
-  <a href="{% url 'books:publisher_update' pk=publisher.pk %}">Edit books</a>
+
+  <h2>Books</h2>
 
   {% if publisher.books.all %}
 
-    <ul>
-      {% for book in publisher.books.all %}
-        <li>{{ book.title }}</li>
-      {% endfor %}
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;">ID</th>
+          <th style="text-align:left;">Title</th>
+          <th style="text-align:left;">Images</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in publisher.books.all %}
+          <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>
+              {% if book.images.all %}
+                {% for image in book.images.all %}
+                  <img src="{{ image.image.url }}" width="100" style="height:auto; max-height:150px;" alt="{{ image.alt_text }}">
+                {% endfor %}
+              {% else %}
+                (None)
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
   {% else %}
 
@@ -23,6 +45,12 @@
 
   {% endif %}
 
-  <p><a href="{% url 'books:publisher_list' %}">All publishers</a></p>
+  <hr>
+
+  <p>
+    <a href="{% url 'books:publisher_update' pk=publisher.pk %}">Edit these books</a>
+    |
+    <a href="{% url 'books:publisher_list' %}">All publishers</a>
+  </p>
 
 {% endblock content %}
