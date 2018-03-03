@@ -26,7 +26,11 @@
         {% if book_form.instance.id %}
           Book #{{ book_form.instance.id }}</h2>
         {% else %}
-          Add another book
+          {% if form.forms|length > 1 %}
+            Add another book
+          {% else %}
+            Add a book
+          {% endif %}
         {% endif %}
       </h2>
 
