@@ -15,9 +15,9 @@
     <table>
       <thead>
         <tr>
-          <th style="text-align:left;">ID</th>
-          <th style="text-align:left;">Title</th>
-          <th style="text-align:left;">Images</th>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Images</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
             <td>
               {% if book.images.all %}
                 {% for image in book.images.all %}
-                  <img src="{{ image.image.url }}" width="100" style="height:auto; max-height:150px;" alt="{{ image.alt_text }}">
+                  <img src="{{ image.image.url }}" height="100" alt="{{ image.alt_text }}">
                 {% endfor %}
               {% else %}
                 (None)
@@ -44,8 +44,6 @@
     <p>This publisher has no books.</p>
 
   {% endif %}
-
-  <hr>
 
   <p>
     <a href="{% url 'books:publisher_update' pk=publisher.pk %}">Edit these books</a>

@@ -39,7 +39,7 @@
       </table>
 
       {% if book_form.nested %}
-        <div style="margin-left: 40px;">
+        <div class="indent">
 
           <h3>Images</h3>
 
@@ -50,7 +50,7 @@
             {% for bookimage_form in book_form.nested.forms %}
 
               <tr>
-                <td style="vertical-align:top">
+                <td>
                   <em>
                     {% if bookimage_form.instance.id %}
                       BookImage #{{ bookimage_form.instance.id }}
@@ -59,7 +59,7 @@
                     {% endif %}
                   </em>
                 </td>
-                <td style="vertical-align:top; padding-bottom: 2em;">
+                <td>
                   {% for hidden_field in bookimage_form.hidden_fields %}
                     {{ hidden_field.errors }}
                   {% endfor %}
@@ -68,9 +68,9 @@
                     {{ bookimage_form.as_table }}
                   </table>
                 </td>
-                <td style="vertical-align:top">
+                <td>
                   {% if bookimage_form.instance.image %}
-                    <img src="{{ bookimage_form.instance.image.url }}" height="100" style="width:auto; max-width:150px;" alt="{{ nested.form.instance.alt_text }}">
+                    <img src="{{ bookimage_form.instance.image.url }}" height="100" alt="{{ nested.form.instance.alt_text }}">
                   {% endif %}
                 </td>
               </tr>
