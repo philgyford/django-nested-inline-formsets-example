@@ -72,3 +72,5 @@ If you want to get this project running to see how it works...
 6. Log in to the Django Admin at http://127.0.0.1:8000/admin/ and add at least one Publisher.
 
 7. Then view the site http://127.0.0.1:8000/ You can follow the links to see all your Publishers, then choose a Publisher, then click the link to add or edit some Books. You'll then be on a page like http://127.0.0.1:8000/publishers/1/edit/ which is the form with its inline formsets.
+
+![](example.png?raw=true)
