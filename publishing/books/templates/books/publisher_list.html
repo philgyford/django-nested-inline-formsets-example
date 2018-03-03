@@ -11,7 +11,9 @@
 
     <ul>
       {% for publisher in publisher_list %}
-        <li><a href="{{ publisher.get_absolute_url }}">{{ publisher.name }}</a></li>
+        <li>
+          <a href="{{ publisher.get_absolute_url }}">{{ publisher.name }}</a>
+        </li>
       {% endfor %}
     </ul>
 

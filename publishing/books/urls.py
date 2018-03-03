@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 
 from . import views
@@ -18,4 +20,9 @@ urlpatterns = [
     path('publishers/<int:pk>/',
         views.PublisherDetailView.as_view(),
         name='publisher_detail'),
-]
+
+    path('publishers/<int:pk>/edit/',
+        views.PublisherUpdateView.as_view(),
+        name='publisher_update'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

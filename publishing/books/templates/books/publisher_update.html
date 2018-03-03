@@ -1,0 +1,76 @@
+{% extends 'books/base.html' %}
+
+{% block page_title %}Editing {{ publisher.name }}{% endblock %}
+
+{% block body_title %}Editing {{ publisher.name }}{% endblock %}
+
+
+{% block content %}
+  <form action="" method="post" enctype="multipart/form-data">
+
+    {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field.errors }}
+      {{ hidden_field }}
+    {% endfor %}
+
+    {% csrf_token %}
+
+    {{ form.management_form }}
+    {{ form.non_form_errors }}
+
+    <table>
+      <thead>
+        <tr>
+          <th>Object</th>
+          <th>Images</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for child_form in form.forms %}
+          <tr>
+            <td>
+              {% for hidden_field in child_form.hidden_fields %}
+                {{ hidden_field.errors }}
+              {% endfor %}
+
+              {{ child_form.as_p }}
+            </td>
+            <td>
+              {% if child_form.nested %}
+                  {{ child_form.nested.management_form }}
+                  {{ child_form.nested.non_form_errors }}
+
+                  <table>
+                    {% for nested_form in child_form.nested.forms %}
+
+                      <tr>
+                        <td>
+                          {% if nested_form.instance.image %}
+                            <img src="{{ nested_form.instance.image.url }}" alt="{{ nested.form.instance.alt_text }}">
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% for hidden_field in nested_form.hidden_fields %}
+                            {{ hidden_field.errors }}
+                          {% endfor %}
+
+                          {{ nested_form.as_p }}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </table>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p>
+      <input type="submit" value="Update books">
+      &nbsp; &nbsp;
+      <a href="{{ publisher.get_absolute_url  }}">Cancel</a>
+    </p>
+  </form>
+
+{% endblock content %}
