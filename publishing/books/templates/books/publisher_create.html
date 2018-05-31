@@ -1,0 +1,31 @@
+{% extends 'books/base.html' %}
+
+{% block page_title %}Adding a publisher{% endblock %}
+
+{% block body_title %}Adding a publisher{% endblock %}
+
+
+{% block content %}
+  <form action="" method="post">
+
+    {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field.errors }}
+      {{ hidden_field }}
+    {% endfor %}
+
+    {% csrf_token %}
+
+    {{ form.non_form_errors }}
+
+    <table>
+      {{ form.as_table }}
+    </table>
+
+    <p>
+      <input type="submit" value="Add publisher">
+      &nbsp; &nbsp;
+      <a href="{% url 'books:home' %}">Cancel</a>
+    </p>
+  </form>
+
+{% endblock content %}

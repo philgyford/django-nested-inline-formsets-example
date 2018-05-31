@@ -2,7 +2,9 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import DetailView, FormView, ListView, TemplateView
+from django.views.generic import (
+    CreateView, DetailView, FormView, ListView, TemplateView
+)
 from django.views.generic.detail import SingleObjectMixin
 
 from .forms import PublisherBooksWithImagesFormset
@@ -23,7 +25,31 @@ class PublisherDetailView(DetailView):
     template_name = 'books/publisher_detail.html'
 
 
+class PublisherCreateView(CreateView):
+    """
+    Only for creating a new publisher. Adding books to it is done in the
+    PublisherUpdateView().
+    """
+    model = Publisher
+    template_name = 'books/publisher_create.html'
+    fields = ['name',]
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The publisher was added.'
+        )
+
+        return super().form_valid(form)
+
+
 class PublisherUpdateView(SingleObjectMixin, FormView):
+    """
+    For adding books to a Publisher.
+    """
+
     model = Publisher
     template_name = 'books/publisher_update.html'
 
