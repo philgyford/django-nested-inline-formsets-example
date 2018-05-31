@@ -47,7 +47,7 @@ class PublisherCreateView(CreateView):
 
 class PublisherBooksUpdateView(SingleObjectMixin, FormView):
     """
-    For adding books to a Publisher.
+    For adding books to a Publisher, or editing them.
     """
 
     model = Publisher
