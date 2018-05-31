@@ -1,4 +1,3 @@
 db.sqlite3
 publishing/media/*
-publishing/db.sqlite3
 !publishing/media/README.md
