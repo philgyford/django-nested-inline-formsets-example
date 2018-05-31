@@ -28,7 +28,7 @@ class PublisherDetailView(DetailView):
 class PublisherCreateView(CreateView):
     """
     Only for creating a new publisher. Adding books to it is done in the
-    PublisherUpdateView().
+    PublisherBooksUpdateView().
     """
     model = Publisher
     template_name = 'books/publisher_create.html'
@@ -45,13 +45,13 @@ class PublisherCreateView(CreateView):
         return super().form_valid(form)
 
 
-class PublisherUpdateView(SingleObjectMixin, FormView):
+class PublisherBooksUpdateView(SingleObjectMixin, FormView):
     """
     For adding books to a Publisher.
     """
 
     model = Publisher
-    template_name = 'books/publisher_update.html'
+    template_name = 'books/publisher_books_update.html'
 
     def get(self, request, *args, **kwargs):
         # The Publisher we're editing:

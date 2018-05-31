@@ -1,8 +1,8 @@
 {% extends 'books/base.html' %}
 
-{% block page_title %}Editing {{ publisher.name }}{% endblock %}
+{% block page_title %}Editing books for {{ publisher.name }}{% endblock %}
 
-{% block body_title %}Editing <a href="{{ publisher.get_absolute_url }}">{{ publisher.name }}</a>{% endblock %}
+{% block body_title %}Editing books for <a href="{{ publisher.get_absolute_url }}">{{ publisher.name }}</a>{% endblock %}
 
 
 {% block content %}

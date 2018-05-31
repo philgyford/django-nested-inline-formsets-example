@@ -40,12 +40,12 @@ And then we create a custom `BaseBooksWithImagesFormset` that has a custom `nest
 
 Finally we create our `PublisherBooksWithImagesFormset` which is for editing all the `Book`s belonging to a `Publisher`... and we pass it this argument: `formset=BaseBooksWithImagesFormset` so it knows how to handle each of the `Book`s' `BookImage`s.
 
-See [`views.py`][views] for how we use this in a class-based view to create the page. This expects the `id` of a `Publisher`. And see the [`books/publisher_update.html`][template] template for how the outer form, and its `Book` formsets, and their nested `BookImage` formsets, are rendered.
+See [`views.py`][views] for how we use this in a class-based view to create the page. This expects the `id` of a `Publisher`. And see the [`books/publisher_books_update.html`][template] template for how the outer form, and its `Book` formsets, and their nested `BookImage` formsets, are rendered.
 
 [models]: publishing/books/models.py
 [forms]: publishing/books/forms.py
 [views]: publishing/books/views.py
-[template]: publishing/books/templates/books/publisher_update.html
+[template]: publishing/books/templates/books/publisher_books_update.html
 
 Here's an image showing how that page looks:
 
@@ -64,7 +64,7 @@ If you want to get this project running to see how it works...
 
 		./manage.py migrate
 
-4. Create a superuser to use the Django Admin:
+4. Create a superuser if you want to use the Django Admin:
 
 		./manage.py createsuperuser
 
@@ -72,8 +72,8 @@ If you want to get this project running to see how it works...
 
 		./manage.py runserver
 
-6. Log in to the Django Admin at http://127.0.0.1:8000/admin/ and add at least one Publisher.
+6. View the site at http://127.0.0.1:8000/  and add at least one Publisher.
 
-7. Then view the site http://127.0.0.1:8000/ You can follow the links to see all your Publishers, then choose a Publisher, then click the link to add or edit some Books. You'll then be on a page like http://127.0.0.1:8000/publishers/1/edit/ which is the form with its inline formsets.
+7. You can then click the link to add some Books to your Publisher. You'll then be on a page like http://127.0.0.1:8000/publishers/1/books/edit/ which is the form with its inline formsets.
 
 ![](example.png?raw=true)

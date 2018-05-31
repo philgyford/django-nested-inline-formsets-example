@@ -46,7 +46,7 @@
   {% endif %}
 
   <p>
-    <a href="{% url 'books:publisher_update' pk=publisher.pk %}">
+    <a href="{% url 'books:publisher_books_update' pk=publisher.pk %}">
       {% if publisher.books.all %}
         Edit these books
       {% else %}
