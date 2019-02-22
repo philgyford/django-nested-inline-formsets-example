@@ -1,5 +1,7 @@
 from django.forms.models import BaseInlineFormSet, inlineformset_factory
+from django.utils.translation import ugettext_lazy as _
 
+from publishing.utils.forms import is_empty_form, is_form_persisted
 from .models import Publisher, Book, BookImage
 
 
@@ -43,6 +45,20 @@ class BaseBooksWithImagesFormset(BaseInlineFormSet):
 
         return result
 
+    def clean(self):
+        super().clean()
+
+        for form in self.forms:
+            if not hasattr(form, 'nested') or self._should_delete_form(form):
+                continue
+
+            if self._is_adding_nested_inlines_to_empty_form(form):
+                form.add_error(
+                    field=None,
+                    error=_('You are trying to add Images to a Book which '
+                            'does not yet exist. Please add information '
+                            'about the Book.'))
+
     def save(self, commit=True):
         """
         Also save the nested formsets.
@@ -55,6 +71,18 @@ class BaseBooksWithImagesFormset(BaseInlineFormSet):
                     form.nested.save(commit=commit)
 
         return result
+
+    def _is_adding_nested_inlines_to_empty_form(self, form):
+        if not hasattr(form, 'nested'):
+            return False
+
+        if is_form_persisted(form) or not is_empty_form(form):
+            return False
+
+        non_deleted_forms = (set(form.nested.forms)
+                             .difference(set(form.nested.deleted_forms)))
+        return any(not is_empty_form(nested_form)
+                   for nested_form in non_deleted_forms)
 
 
 # This is the formset for the Books belonging to a Publisher and the
