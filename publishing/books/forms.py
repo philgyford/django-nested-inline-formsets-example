@@ -99,6 +99,8 @@ class BaseBooksWithImagesFormset(BaseInlineFormSet):
             set(form.nested.deleted_forms)
         )
 
+
+        # At this point we know that the "form" is empty.
         # In all the inline forms that aren't being deleted, are there any that
         # contain data? Return True if so.
         return any(not is_empty_form(nested_form) for nested_form in non_deleted_forms)

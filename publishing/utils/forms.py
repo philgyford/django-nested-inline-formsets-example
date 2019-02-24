@@ -1,6 +1,10 @@
 def is_empty_form(form):
     """
-    Is this form valid (has no errors) and contains no data?
+    A form is considered empty if it passes its validation,
+    but doesn't have any data.
+
+    This is primarily used in formsets, when you want to
+    validate if an individual form is empty (extra_form).
     """
     if form.is_valid() and not form.cleaned_data:
         return True
