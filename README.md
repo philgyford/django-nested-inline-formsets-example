@@ -58,22 +58,35 @@ If you want to get this project running to see how it works...
 
 2. Install Django and [Pillow](https://pillow.readthedocs.io/en/latest/) (required for the `ImageField`). For example, using pip with the `requirements.txt` file:
 
-		pip install -r requirements.txt
+       pip install -r requirements.txt
+
+    Or using pipenv with the `Pipfile`s:
+
+       pipenv install
 
 3. Run the migrations:
 
-		./manage.py migrate
+       ./manage.py migrate
 
 4. Create a superuser if you want to use the Django Admin:
 
-		./manage.py createsuperuser
+       ./manage.py createsuperuser
 
 5. Run the development server:
 
-		./manage.py runserver
+       ./manage.py runserver
 
 6. View the site at http://127.0.0.1:8000/  and add at least one Publisher.
 
 7. You can then click the link to add some Books to your Publisher. You'll then be on a page like http://127.0.0.1:8000/publishers/1/books/edit/ which is the form with its inline formsets.
 
-![](example.png?raw=true)
+    ![](example.png?raw=true)
+
+
+
+## Thanks
+
+* [PaperNick](https://github.com/PaperNick) for fixing [#3][issue-3]
+
+
+[issue-3]: https://github.com/philgyford/django-nested-inline-formsets-example/pull/3
