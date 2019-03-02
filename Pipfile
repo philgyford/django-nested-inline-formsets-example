@@ -1,0 +1,11 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+Django = "~=2.1"
+Pillow = "~=5.4"
+
+[requires]
+python_version = "3.6"
