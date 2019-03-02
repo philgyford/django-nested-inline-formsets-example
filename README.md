@@ -86,7 +86,7 @@ If you want to get this project running to see how it works...
 
 ## Thanks
 
-* [PaperNick](https://github.com/PaperNick) for fixing [#3][issue-3]
+* [PaperNick](https://github.com/PaperNick) for [PR #3][issue-3]
 
 
 [issue-3]: https://github.com/philgyford/django-nested-inline-formsets-example/pull/3
