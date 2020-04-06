@@ -1,2 +1,6 @@
-django==2.1.7
-pillow==5.4.1
+-i https://pypi.org/simple
+asgiref==3.2.7
+django==3.0.5
+pillow==7.1.1
+pytz==2019.3
+sqlparse==0.3.1
