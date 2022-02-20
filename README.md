@@ -2,6 +2,8 @@
 
 This Django project is purely to demonstrate an example of how to create a form that contains [inline formsets][if] that each contains its own inline formset.
 
+It runs in Django 4.0 using Python 3.9.
+
 I'm indebted to [this blogpost][post] by Ravi Kumar Gadila for helping me figure this out.
 
 [if]: https://docs.djangoproject.com/en/2.0/topics/forms/modelforms/#inline-formsets
@@ -63,6 +65,8 @@ If you want to get this project running to see how it works...
     Or using pipenv with the `Pipfile`s:
 
        pipenv install
+
+    (If using pipenv, enter the virtual environment before running the following commands, by doing `pipenv shell`)
 
 3. Run the migrations:
 
