@@ -1,5 +1,5 @@
 from django.forms.models import BaseInlineFormSet, inlineformset_factory
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from publishing.utils.forms import is_empty_form, is_form_persisted
 from .models import Publisher, Book, BookImage
