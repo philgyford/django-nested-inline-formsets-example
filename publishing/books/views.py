@@ -3,7 +3,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import (
-    CreateView, DetailView, FormView, ListView, TemplateView
+    CreateView,
+    DetailView,
+    FormView,
+    ListView,
+    TemplateView,
 )
 from django.views.generic.detail import SingleObjectMixin
 
@@ -12,17 +16,17 @@ from .models import Publisher, Book, BookImage
 
 
 class HomeView(TemplateView):
-    template_name = 'books/home.html'
+    template_name = "books/home.html"
 
 
 class PublisherListView(ListView):
     model = Publisher
-    template_name = 'books/publisher_list.html'
+    template_name = "books/publisher_list.html"
 
 
 class PublisherDetailView(DetailView):
     model = Publisher
-    template_name = 'books/publisher_detail.html'
+    template_name = "books/publisher_detail.html"
 
 
 class PublisherCreateView(CreateView):
@@ -30,17 +34,16 @@ class PublisherCreateView(CreateView):
     Only for creating a new publisher. Adding books to it is done in the
     PublisherBooksUpdateView().
     """
+
     model = Publisher
-    template_name = 'books/publisher_create.html'
-    fields = ['name',]
+    template_name = "books/publisher_create.html"
+    fields = [
+        "name",
+    ]
 
     def form_valid(self, form):
 
-        messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The publisher was added.'
-        )
+        messages.add_message(self.request, messages.SUCCESS, "The publisher was added.")
 
         return super().form_valid(form)
 
@@ -51,7 +54,7 @@ class PublisherBooksUpdateView(SingleObjectMixin, FormView):
     """
 
     model = Publisher
-    template_name = 'books/publisher_books_update.html'
+    template_name = "books/publisher_books_update.html"
 
     def get(self, request, *args, **kwargs):
         # The Publisher we're editing:
@@ -68,7 +71,8 @@ class PublisherBooksUpdateView(SingleObjectMixin, FormView):
         Use our big formset of formsets, and pass in the Publisher object.
         """
         return PublisherBooksWithImagesFormset(
-                            **self.get_form_kwargs(), instance=self.object)
+            **self.get_form_kwargs(), instance=self.object
+        )
 
     def form_valid(self, form):
         """
@@ -76,13 +80,9 @@ class PublisherBooksUpdateView(SingleObjectMixin, FormView):
         """
         form.save()
 
-        messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'Changes were saved.'
-        )
+        messages.add_message(self.request, messages.SUCCESS, "Changes were saved.")
 
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('books:publisher_detail', kwargs={'pk': self.object.pk})
+        return reverse("books:publisher_detail", kwargs={"pk": self.object.pk})

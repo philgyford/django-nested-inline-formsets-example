@@ -4,9 +4,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-
-    path('admin/', admin.site.urls),
-
-    path('', include('publishing.books.urls')),
-
+    path("admin/", admin.site.urls),
+    path("", include("publishing.books.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
