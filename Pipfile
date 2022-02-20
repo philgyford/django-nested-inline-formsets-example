@@ -4,8 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "~=3.0"
-Pillow = "~=7.1.1"
+Django = "~=4.0"
+Pillow = "~=9.0.0"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
+
+[dev-packages]
+black = "==22.1.0"
