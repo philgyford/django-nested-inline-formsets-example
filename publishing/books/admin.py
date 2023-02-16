@@ -10,7 +10,7 @@ class BookImageInline(admin.TabularInline):
 
 @admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
-    list_display = ( "id", "name")
+    list_display = ("id", "name")
     list_display_links = ("name",)
 
 

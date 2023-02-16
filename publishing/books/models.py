@@ -3,7 +3,6 @@ from django.urls import reverse
 
 
 class Publisher(models.Model):
-
     name = models.CharField(null=False, blank=False, max_length=255)
 
     def __str__(self):
@@ -14,7 +13,6 @@ class Publisher(models.Model):
 
 
 class Book(models.Model):
-
     title = models.CharField(null=False, blank=False, max_length=255)
 
     publisher = models.ForeignKey(

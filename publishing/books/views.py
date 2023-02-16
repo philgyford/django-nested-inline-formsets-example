@@ -42,7 +42,6 @@ class PublisherCreateView(CreateView):
     ]
 
     def form_valid(self, form):
-
         messages.add_message(self.request, messages.SUCCESS, "The publisher was added.")
 
         return super().form_valid(form)
